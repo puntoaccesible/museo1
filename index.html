@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo VEI - Punto INCLUYENTE</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div class="contenido-sala">
+        <!-- BARRA DE HERRAMIENTAS INTERACTIVA -->
+        <header class="panel-accesibilidad" aria-label="Herramientas de accesibilidad">
+            <div class="panel-titulo">🌐 Panel de Accesibilidad (Prototipo VEI / Punto INCLUYENTE)</div>
+            <div class="botones-grupo">
+                <button class="btn-acc" onclick="cambiarContraste()" aria-label="Cambiar a alto contraste">🌓 Alto Contraste</button>
+                <button class="btn-acc" onclick="modificarTexto(2)" aria-label="Aumentar tamaño de letra">A+ Aumentar Letra</button>
+                <button class="btn-acc" onclick="modificarTexto(-2)" aria-label="Disminuir tamaño de letra">A- Disminuir Letra</button>
+                <button class="btn-acc" onclick="restablecer()" aria-label="Restablecer valores">🔄 Restablecer</button>
+            </div>
+        </header>
+<!-- 🖼️ CONTENEDOR DE LA ESTACIÓN (Módulo de Navegación Háptica) -->
+  <section class="modulo-sala" aria-live="polite">
+   
+    <!-- Aviso visual y auditivo de inicio -->
+    <div class="instruccion-inicio">
+      <small class="etiqueta-guia">PUNTO INCLUYENTE</small>
+      <p class="nota-interaccion">👇 Toca cualquier parte de la pantalla para activar el audio de la guía.</p>
+    </div>
+
+    <!-- Los textos de aquí abajo cambiarán solos al presionar "Siguiente Obra" -->
+    <article class="tarjeta-obra">
+      <h1 id="titulo-obra" class="titulo-dinamico">Obra 1: El Vínculo del Arte Universal</h1>
+     
+      <p id="cedula-obra" class="texto-cedula" style="font-size: var(--fuente-tamano, 16px);">
+        Esta pieza representa la unión de los canales sensoriales mediante relieves geométricos. Explora la textura con tus manos de izquierda a derecha de forma libre.
+      </p>
+    </article>
+
+    <!-- 🎭 CONTENIDOS MULTIMEDIA ADAPTATIVOS -->
+    <div class="bloque-multimedia">
+      <button class="btn-media" id="btn-audio" aria-label="Reproducir audiodescripción completa de la obra">
+        🔵 Activar Audiodescripción
+      </button>
+      <button class="btn-media" id="btn-lsm" aria-label="Desplegar video en Lengua de Señas Mexicana">
+        🟢 Ver Guía en LSM
+      </button>
+    </div>
+
+    <!-- ➡️ EL BOTÓN CRAVE: Salto Secuencial de la Sala -->
+    <footer class="pie-navegacion">
+      <button id="btn-siguiente" class="btn-siguiente" aria-label="Avanzar a la siguiente pieza de la sala">
+        Ir a la Siguiente Obra ➡️
+      </button>
+    </footer>
+
+  </section>
+</main>
+        <!-- CONTENIDO PRINCIPAL -->
+        <main>
+            <h1>✨ Accesibilidad Universal: Hacia una cultura de inclusión</h1>
+            <p style="font-style: italic; font-size: 1.2rem; color: var(--primario);">“Diseñando entornos para los sentidos.”</p>
+           
+            <div style="margin: 15px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <span>🌐 <strong>Idioma:</strong></span>
+                <button class="btn-acc" style="background-color: var(--primario); padding: 6px 12px; font-size: 0.9rem; min-height: auto;" aria-label="Cambiar idioma a Español">🇲🇽 Español</button>
+                <button class="btn-acc" style="background-color: #4a5568; padding: 6px 12px; font-size: 0.9rem; min-height: auto;" aria-label="Cambiar idioma a Inglés">🇺🇸 English</button>
+            </div>
+           
+            <h2>Hacia una cultura de inclusión</h2>
+            <p>La accesibilidad universal no es solo cumplir con una norma; es garantizar que todas las personas, sin importar sus condiciones, puedan disfrutar de la cultura y el conocimiento de manera autónoma. Creo firmemente que los espacios culturales son el corazón de nuestra sociedad y deben ser diseñados para permitir una participación plena y equitativa para todos.</p>
+            <p>A menudo, los entornos museísticos y los espacios de difusión enfrentan barreras invisibles —desde una señalética poco clara hasta interfaces digitales limitadas— que excluyen a personas con discapacidad visual, auditiva o motriz. Mi enfoque profesional busca identificar y eliminar estas barreras mediante soluciones técnicas que transforman el entorno en un espacio amigable y funcional.</p>
+            <p>Como licenciada en Optometría combino mi especialidad en salud visual con una visión humana y estratégica para impulsar proyectos inclusivos. Mi objetivo es colaborar con instituciones que, al igual que yo, estén comprometidas con la transformación real de nuestros espacios culturales.</p>
+
+            <h2>📲 La Capa Tecnológica: Accesibilidad para la Autonomía</h2>
+            <p>El Prototipo VEI es una solución de bajo costo, inmediata y escalable que se activa a través de códigos QR adaptativos fijos:</p>
+            <ul>
+                <li><strong>Códigos QR Estáticos:</strong> El usuario escanea el código con su propio teléfono y accede al contenido al instante, sin descargar aplicaciones ni generar costos permanentes para el museo.</li>
+                <li><strong>🧠 Para la Neurodivergencia (TDAH):</strong> Textos cortos y lectura fácil para evitar la fatiga visual y la sobrecarga cognitiva, junto con alertas sobre la iluminación y ruido de la sala.</li>
+                <li><strong>🦻 Para la Hipoacusia y Sordera:</strong> Videos en Lengua de Señas Mexicana (LSM), subtítulos claros y audio directo a los auxiliares auditivos por Bluetooth (borrando el eco arquitectónico).</li>
+                <li><strong>👁️ Para la Baja Visión y Ceguera:</strong> Ajustes automáticos de tipografía macro, modo de alto contraste y compatibilidad absoluta con lectores de pantalla (TalkBack/VoiceOver).</li>
+            </ul>
+
+            <h2>📅 El Programa: Día de Museos Accesibles</h2>
+            <p>Proponemos la institución del Día de Museos el segundo miércoles de cada mes, de 11:00 a.m. a 2:00 p.m.</p>
+            <ul>
+                <li><strong>Ergonomía Lumínica Diurna:</strong> Elegimos el horario diurno porque la luz natural del sol estabiliza el remanente visual de la baja visión y ofrece la iluminación perfecta para la lectura labiofacial y el seguimiento de la LSM.</li>
+                <li><strong>Estación "Circuito de los Sentidos":</strong> Cada museo participante adaptará únicamente de una a tres salas como máximo enfocado en 4 o 5 piezas clave para evitar la fatiga museística. En esta estación se aplicará un Modelo de Préstamo Circular.
+                  Dependiendo del recinto  habra la posibilidad de que el visitante recibirá una guía háptica con relieves físicos a cambio de una identificación oficial en recepción.</li>
+                <li><strong>Implementación Progresiva:</strong> Al igual que la Noche de Museos, los recintos se irán sumando de forma paulatina y modular. Empezamos con un piloto pequeño, medimos el éxito y permitimos que la red crezca de forma orgánica y sostenible.</li>
+            </ul>
+
+            <!-- NUEVO MÓDULO DE DEMOSTRACIÓN SOLICITADO -->
+            <h2>🖼️ Módulo de Demostración: Estación Sensorial VEI</h2>
+            <p>El siguiente contenido simula una pieza de exhibición real adaptada bajo nuestra metodología neuroergonómica:</p>
+           
+            <div style="border: 2px dashed var(--primario); padding: 25px; border-radius: 8px; margin: 20px 0; background-color: rgba(240, 244, 248, 0.3);">
+                <h3>Obra: "El Vínculo del Arte Universal"</h3>
+                <p><strong>Cédula en formato de lectura fácil:</strong> Esta pieza representa la unión de los canales de comunicación humana a través del sentido de la vista, el oído y el tacto. Diseñada con altos relieves geométricos para la exploración háptica autónoma.</p>
+               
+                <div class="botones-grupo" style="margin-top: 20px; margin-bottom: 15px;">
+                    <button class="btn-acc" style="background-color: #2b6cb0;" aria-label="Activar audiodescripción">🔵 Activar Audiodescripción (Formato accesible)</button>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--texto); margin-bottom: 25px; padding-left: 5px;">
+                    <em>(Audio optimizado con descripciones espaciales detalladas para personas con ceguera total o baja visión).</em>
+                </p>
+
+                <!-- MÓDULO DE REPRODUCCIÓN DIGITAL SEGURO Y ACCESIBLE -->
+                <div style="background-color: #1a202c; color: white; padding: 30px 20px; text-align: center; border-radius: 8px; border: 2px solid var(--primario);">
+                    <span style="font-size: 2.5rem;">📹</span>
+                    <h4 style="margin: 10px 0; color: white; font-size: 1.2rem;">Contenido Audiovisual Integrado</h4>
+                    <p style="font-size: 0.95rem; max-width: 500px; margin: 10px auto; color: #cbd5e0; line-height: 1.4;">
+                        Cuento adaptado: <strong>"NO ES MALO SER DIFERENTE"</strong> (Interpretado en Lengua de Señas Mexicana con Subtítulos avanzados).
+                    </p>
+                    <a href="https://youtube.com" target="_blank" class="btn-acc" style="display: inline-block; background-color: #2f855a; color: white; text-decoration: none; margin-top: 10px; padding: 12px 20px; line-height: 1.2; font-size: 0.95rem;">
+                        🟢 Ver Guía en Lengua de Señas Mexicana (LSM) y Subtítulos
+                    </a>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--texto); margin-top: 10px; padding-left: 5px;">
+                    <em>(Video interactivo con subtitulado de alto contraste. El reproductor enlaza directamente el audio a auxiliares auditivos vía Bluetooth).</em>
+                </p>
+
+                <p style="margin-top: 20px; font-size: 0.9rem; font-style: italic;">⚠️ Nota del entorno: Sala con luz tenue (50 lux) y ambiente silencioso para cuidar el bienestar emocional.</p>
+            </div>
+
+            <h2>⚙️ ¿Qué pasa ante un imprevisto técnico?</h2>
+            <p>El Prototipo VEI está preparado para que la inclusión nunca se apague:</p>
+            <ul>
+                <li>Si el museo no tiene internet o el usuario no tiene datos, instalamos un servidor portátil de bajo costo que transmite el contenido de forma local y sin cables.</li>
+                <li>Si el usuario no lleva celular, el museo le presta una tableta institucional bajo el mismo modelo de recepción.</li>
+                <li>Si hay un apagón tecnológico total, los relieves táctiles físicos de la guía garantizan que la persona siga disfrutando la experiencia de manera autónoma.</li>
+            </ul>
+
+            <hr style="border: 0; border-top: 2px solid var(--primario); margin: 40px 0;">
+
+            <h2>👩‍⚕️ Consultoría y Desarrollo:</h2>
+            <p><strong>Lic. Cinthya Verónica Castillejos Arteaga</strong><br>
+            Especialista en Accesibilidad Sensorial y Neuroergonomía.<br>
+            📬 <strong>Contacto para implementar una Sala Piloto (5 a 10 piezas):</strong> <a href="mailto:verocvca@gmail.com" style="color: var(--primario);">verocvca@gmail.com</a></p>
+        </main>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
