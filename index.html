@@ -1,145 +1,345 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="vei-raiz" style="font-size: 16px;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prototipo VEI - Punto INCLUYENTE</title>
-    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* BASE NEUROERGONÓMICA CON ENFOQUE EN ALTO CONTRASTE */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            padding: 20px;
+            text-align: left;
+            line-height: 1.5;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        /* CLASE PARA INVERTIR A MODO OSCURO / ALTO CONTRASTE AL TOCAR EL BOTÓN */
+        /* CLASE PARA INVERTIR A MODO ALTO CONTRASTE: NEGRO CON AMARILLO */
+        body.contraste-invertido {
+            background-color: #000000 !important;
+            color: #ffff00 !important; /* Texto Amarillo Puro */
+        }
+
+        body.contraste-invertido .contenido-sala,
+        body.contraste-invertido .tarjeta-submodulo,
+        body.contraste-invertido .panel-herramientas,
+        body.contraste-invertido .seccion-talleres-bloque {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+            border-color: #ffff00 !important; /* Bordes amarillos para delimitar el espacio */
+        }
+
+        body.contraste-invertido h1,
+        body.contraste-invertido h2,
+        body.contraste-invertido h3,
+        body.contraste-invertido h4 {
+            color: #ffff00 !important;
+        }
+
+        body.contraste-invertido p,
+        body.contraste-invertido li,
+        body.contraste-invertido span {
+            color: #ffff00 !important;
+        }
+
+        body.contraste-invertido .btn-acc {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+            border: 2px solid #ffff00 !important;
+        }
+
+        body.contraste-invertido .lienzo-haptico-laboratorio {
+            background-color: #000000 !important;
+            border-color: #ffff00 !important;
+        }
+
+        body.contraste-invertido .zona-sensorial-muro {
+            color: #ffff00 !important;
+            border-color: #ffff00 !important;
+            background-color: rgba(255, 255, 0, 0.05) !important;
+        }
+
+
+        body.contraste-invertido .contenido-sala,
+        body.contraste-invertido .tarjeta-submodulo,
+        body.contraste-invertido .panel-herramientas {
+            background-color: #1c2541 !important;
+            color: #ffffff !important;
+            border-color: #007bff !important;
+        }
+
+        body.contraste-invertido .btn-acc {
+            background-color: #333333 !important;
+            color: #ffffff !important;
+            border: 1px solid #ffffff !important;
+        }
+
+        body.contraste-invertido .lienzo-haptico-laboratorio {
+            background-color: #000000 !important;
+            border-color: #00ffcc !important;
+        }
+
+        body.contraste-invertido .seccion-talleres-bloque {
+            background-color: #000000 !important;
+            border-color: #ff007f !important;
+        }
+
+        /* DISEÑO DE INTERFAZ LIMPIA */
+        .contenido-sala {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .panel-herramientas {
+            margin-bottom: 20px;
+        }
+
+        .botones-grupo {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .btn-acc {
+            background-color: #f0f4f8;
+            color: #000000;
+            border: 1px solid #94a3b8;
+            padding: 8px 14px;
+            font-size: 0.95rem;
+            font-weight: normal;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-acc:active {
+            transform: scale(0.98);
+        }
+
+        h1 { font-size: 2rem; margin: 15px 0 10px 0; font-weight: bold; }
+        h2 { font-size: 1.5rem; margin: 25px 0 10px 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px; }
+        p { font-size: 1.1rem; margin-bottom: 15px; text-align: justify; }
+        ul { font-size: 1.1rem; margin-bottom: 20px; padding-left: 20px; }
+        li { margin-bottom: 8px; text-align: justify; }
+
+        /* LIENZO HÁPTICO DE REPRODUCCIÓN DE TEXTURAS AVANZADAS */
+        .tarjeta-submodulo {
+            border: 2px dashed #007bff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            background-color: rgba(240, 244, 248, 0.4);
+        }
+
+        .lienzo-haptico-laboratorio {
+            width: 100%;
+            height: 260px;
+            background-color: #111111;
+            border: 4px dotted #007bff;
+            border-radius: 8px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .zona-sensorial-muro {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-align: center;
+            box-sizing: border-box;
+            color: #ffffff;
+        }
+
+        #haptico-forma {
+            top: 15px; left: 15px; width: 45%; height: 230px;
+            border: 3px solid #ff007f;
+            background-color: rgba(255, 0, 127, 0.15);
+        }
+
+        #haptico-deterioro {
+            top: 15px; right: 15px; width: 45%; height: 105px;
+            border: 3px dashed #ffcc00;
+            background-color: rgba(255, 204, 0, 0.15);
+        }
+
+        #haptico-autodestruccion {
+            bottom: 15px; right: 15px; width: 45%; height: 105px;
+            border: 3px dotted #dc3545;
+            background-color: rgba(220, 53, 69, 0.15);
+        }
+
+        .seccion-talleres-bloque {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #ff007f;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
 
     <div class="contenido-sala">
         <!-- BARRA DE HERRAMIENTAS INTERACTIVA -->
-        <header class="panel-accesibilidad" aria-label="Herramientas de accesibilidad">
-            <div class="panel-titulo">🌐 Panel de Accesibilidad (Prototipo VEI / Punto INCLUYENTE)</div>
+        <header class="panel-herramientas" aria-label="Herramientas de accesibilidad">
             <div class="botones-grupo">
-                <button class="btn-acc" onclick="cambiarContraste()" aria-label="Cambiar a alto contraste">🌓 Alto Contraste</button>
-                <button class="btn-acc" onclick="modificarTexto(2)" aria-label="Aumentar tamaño de letra">A+ Aumentar Letra</button>
-                <button class="btn-acc" onclick="modificarTexto(-2)" aria-label="Disminuir tamaño de letra">A- Disminuir Letra</button>
-                <button class="btn-acc" onclick="restablecer()" aria-label="Restablecer valores">🔄 Restablecer</button>
+                <button class="btn-acc" onclick="cambiarContraste()">🌓 Contraste</button>
+                <button class="btn-acc" onclick="modificarTexto(2)">A+ Letra</button>
+                <button class="btn-acc" onclick="modificarTexto(-2)">A- Letra</button>
+                <button class="btn-acc" onclick="restablecer()">🔄 Restablecer</button>
             </div>
+            <div style="font-size: 0.9rem; font-weight: bold; color: #475569;">PUNTO INCLUYENTE</div>
         </header>
-<!-- 🖼️ CONTENEDOR DE LA ESTACIÓN (Módulo de Navegación Háptica) -->
-  <section class="modulo-sala" aria-live="polite">
-   
-    <!-- Aviso visual y auditivo de inicio -->
-    <div class="instruccion-inicio">
-      <small class="etiqueta-guia">PUNTO INCLUYENTE</small>
-      <p class="nota-interaccion">👇 Toca cualquier parte de la pantalla para activar el audio de la guía.</p>
-    </div>
 
-    <!-- Los textos de aquí abajo cambiarán solos al presionar "Siguiente Obra" -->
-    <article class="tarjeta-obra">
-      <h1 id="titulo-obra" class="titulo-dinamico">Obra 1: El Vínculo del Arte Universal</h1>
-     
-      <p id="cedula-obra" class="texto-cedula" style="font-size: var(--fuente-tamano, 16px);">
-        Esta pieza representa la unión de los canales sensoriales mediante relieves geométricos. Explora la textura con tus manos de izquierda a derecha de forma libre.
-      </p>
-    </article>
-
-    <!-- 🎭 CONTENIDOS MULTIMEDIA ADAPTATIVOS -->
-    <div class="bloque-multimedia">
-      <button class="btn-media" id="btn-audio" aria-label="Reproducir audiodescripción completa de la obra">
-        🔵 Activar Audiodescripción
-      </button>
-      <button class="btn-media" id="btn-lsm" aria-label="Desplegar video en Lengua de Señas Mexicana">
-        🟢 Ver Guía en LSM
-      </button>
-    </div>
-
-    <!-- ➡️ EL BOTÓN CRAVE: Salto Secuencial de la Sala -->
-    <footer class="pie-navegacion">
-      <button id="btn-siguiente" class="btn-siguiente" aria-label="Avanzar a la siguiente pieza de la sala">
-        Ir a la Siguiente Obra ➡️
-      </button>
-    </footer>
-
-  </section>
-</main>
-        <!-- CONTENIDO PRINCIPAL -->
+        <!-- MANIFIESTO Y PONENCIA INTEGRADA -->
         <main>
+            <p style="font-size: 1rem; color: #475569; margin-bottom: 20px;">👇 Toca cualquier parte de la pantalla para activar el audio de la guía.</p>
+            
+            <!-- EXPOSITORA CREDENCIALES -->
+            <div style="background-color: rgba(0,123,255,0.05); padding: 15px; border-radius: 6px; margin-bottom: 25px; border-left: 4px solid #007bff; font-size: 0.95rem;">
+                <strong>Ponencia Plenaria (Punto 8):</strong> Lic. Opt. Cinthya Verónica Castillejos Arteaga <br>
+                <span>Especialista en Neuroergonomía y Accesibilidad Sensorial</span> | 📩 verocvca@gmail.com
+            </div>
+
             <h1>✨ Accesibilidad Universal: Hacia una cultura de inclusión</h1>
-            <p style="font-style: italic; font-size: 1.2rem; color: var(--primario);">“Diseñando entornos para los sentidos.”</p>
-           
-            <div style="margin: 15px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                <span>🌐 <strong>Idioma:</strong></span>
-                <button class="btn-acc" style="background-color: var(--primario); padding: 6px 12px; font-size: 0.9rem; min-height: auto;" aria-label="Cambiar idioma a Español">🇲🇽 Español</button>
-                <button class="btn-acc" style="background-color: #4a5568; padding: 6px 12px; font-size: 0.9rem; min-height: auto;" aria-label="Cambiar idioma a Inglés">🇺🇸 English</button>
-            </div>
-           
-            <h2>Hacia una cultura de inclusión</h2>
+            <p style="font-style: italic; font-size: 1.2rem; color: #007bff; margin-top: -5px;">“Diseñando entornos para los sentidos.”</p>
+
             <p>La accesibilidad universal no es solo cumplir con una norma; es garantizar que todas las personas, sin importar sus condiciones, puedan disfrutar de la cultura y el conocimiento de manera autónoma. Creo firmemente que los espacios culturales son el corazón de nuestra sociedad y deben ser diseñados para permitir una participación plena y equitativa para todos.</p>
-            <p>A menudo, los entornos museísticos y los espacios de difusión enfrentan barreras invisibles —desde una señalética poco clara hasta interfaces digitales limitadas— que excluyen a personas con discapacidad visual, auditiva o motriz. Mi enfoque profesional busca identificar y eliminar estas barreras mediante soluciones técnicas que transforman el entorno en un espacio amigable y funcional.</p>
-            <p>Como licenciada en Optometría combino mi especialidad en salud visual con una visión humana y estratégica para impulsar proyectos inclusivos. Mi objetivo es colaborar con instituciones que, al igual que yo, estén comprometidas con la transformación real de nuestros espacios culturales.</p>
+            <p>Como licenciada en Optometría combino mi especialidad en salud visual con una visión humana y estratégica para impulsar proyectos de inclusión. Mi objetivo es colaborar con instituciones que estén comprometidas con la transformación real de nuestros espacios culturales mediante el uso eficiente y consciente de la tecnología.</p>
 
-            <h2>📲 La Capa Tecnológica: Accesibilidad para la Autonomía</h2>
-            <p>El Prototipo VEI es una solución de bajo costo, inmediata y escalable que se activa a través de códigos QR adaptativos fijos:</p>
+            <h2>📲 La Capa Tecnológica: Protocolo VEI</h2>
+            <p>El Prototipo VEI es una solución de bajo costo, inmediata y escalable que se activa a través de códigos QR adaptativos fijos por sala:</p>
             <ul>
-                <li><strong>Códigos QR Estáticos:</strong> El usuario escanea el código con su propio teléfono y accede al contenido al instante, sin descargar aplicaciones ni generar costos permanentes para el museo.</li>
-                <li><strong>🧠 Para la Neurodivergencia (TDAH):</strong> Textos cortos y lectura fácil para evitar la fatiga visual y la sobrecarga cognitiva, junto con alertas sobre la iluminación y ruido de la sala.</li>
-                <li><strong>🦻 Para la Hipoacusia y Sordera:</strong> Videos en Lengua de Señas Mexicana (LSM), subtítulos claros y audio directo a los auxiliares auditivos por Bluetooth (borrando el eco arquitectónico).</li>
-                <li><strong>👁️ Para la Baja Visión y Ceguera:</strong> Ajustes automáticos de tipografía macro, modo de alto contraste y compatibilidad absoluta con lectores de pantalla (TalkBack/VoiceOver).</li>
+                <li><strong>Código QR Único de Sala:</strong> El visitante escanea un solo código al ingresar a la sala y toma el control total en su mano. Elimina por completo la necesidad de colocar sensores caros en las paredes y reduce la contaminación visual en los muros del museo.</li>
+                <li><strong>🧠 Para la Neurodivergencia (TDAH):</strong> Cédulas con textos cortos organizados bajo principios de Lectura Fácil para mitigar la sobrecarga cognitiva y la fatiga visual.</li>
+                <li><strong>🦻 Para la Hipoacusia y Sordera:</strong> Audio directo enlazado vía Bluetooth a auxiliares auditivos (borrando el eco arquitectónico), subtitulado avanzado y videos en Lengua de Señas Mexicana (LSM).</li>
+                <li><strong>👁️ Para la Baja Visión y Ceguera:</strong> Control de contraste cromático, escalabilidad macro-tipográfica y compatibilidad absoluta con lectores de pantalla (TalkBack/VoiceOver).</li>
             </ul>
 
-            <h2>📅 El Programa: Día de Museos Accesibles</h2>
-            <p>Proponemos la institución del Día de Museos el segundo miércoles de cada mes, de 11:00 a.m. a 2:00 p.m.</p>
-            <ul>
-                <li><strong>Ergonomía Lumínica Diurna:</strong> Elegimos el horario diurno porque la luz natural del sol estabiliza el remanente visual de la baja visión y ofrece la iluminación perfecta para la lectura labiofacial y el seguimiento de la LSM.</li>
-                <li><strong>Estación "Circuito de los Sentidos":</strong> Cada museo participante adaptará únicamente de una a tres salas como máximo enfocado en 4 o 5 piezas clave para evitar la fatiga museística. En esta estación se aplicará un Modelo de Préstamo Circular.
-                  Dependiendo del recinto  habra la posibilidad de que el visitante recibirá una guía háptica con relieves físicos a cambio de una identificación oficial en recepción.</li>
-                <li><strong>Implementación Progresiva:</strong> Al igual que la Noche de Museos, los recintos se irán sumando de forma paulatina y modular. Empezamos con un piloto pequeño, medimos el éxito y permitimos que la red crezca de forma orgánica y sostenible.</li>
-            </ul>
+            <h2>🖼️ Módulo de Demostración: Estación Sensorial Háptica</h2>
+            <p>El siguiente bloque simula la interacción con la <strong>Obra 1 (De una secuencia de 10 piezas en serie en la Sala 1)</strong>. Al interactuar con el botón de avance, el sistema actualiza de manera consecutiva los relieves en la mano del visitante:</p>
 
-            <!-- NUEVO MÓDULO DE DEMOSTRACIÓN SOLICITADO -->
-            <h2>🖼️ Módulo de Demostración: Estación Sensorial VEI</h2>
-            <p>El siguiente contenido simula una pieza de exhibición real adaptada bajo nuestra metodología neuroergonómica:</p>
-           
-            <div style="border: 2px dashed var(--primario); padding: 25px; border-radius: 8px; margin: 20px 0; background-color: rgba(240, 244, 248, 0.3);">
-                <h3>Obra: "El Vínculo del Arte Universal"</h3>
-                <p><strong>Cédula en formato de lectura fácil:</strong> Esta pieza representa la unión de los canales de comunicación humana a través del sentido de la vista, el oído y el tacto. Diseñada con altos relieves geométricos para la exploración háptica autónoma.</p>
+            <div class="tarjeta-submodulo">
+                <h3 id="titulo-obra-dinamico" style="margin-top: 0; font-weight: bold;">Obra 1: El Vínculo del Arte Universal</h3>
+                <p id="texto-cedula-dinamico">Esta pieza representa la unión de los canales sensoriales mediante relieves geométricos. Explora la textura con tus manos de izquierda a derecha de forma libre.</p>
                
-                <div class="botones-grupo" style="margin-top: 20px; margin-bottom: 15px;">
-                    <button class="btn-acc" style="background-color: #2b6cb0;" aria-label="Activar audiodescripción">🔵 Activar Audiodescripción (Formato accesible)</button>
+                <!-- BOTONES MULTIMEDIA -->
+                <div class="botones-grupo" style="margin-top: 15px; margin-bottom: 10px;">
+                    <button class="btn-acc" style="background-color: #007bff; color: white; border: none;" onclick="reproducirAudiodescripcion()">🔵 Activar Audiodescripción</button>
+                    <button class="btn-acc" style="background-color: #28a745; color: white; border: none;" onclick="alert('Simulación: Reproducción de video adaptado en Lengua de Señas Mexicana con subtítulos de alto contraste.')">🟢 Ver Guía en LSM</button>
                 </div>
-                <p style="font-size: 0.95rem; color: var(--texto); margin-bottom: 25px; padding-left: 5px;">
-                    <em>(Audio optimizado con descripciones espaciales detalladas para personas con ceguera total o baja visión).</em>
-                </p>
 
-                <!-- MÓDULO DE REPRODUCCIÓN DIGITAL SEGURO Y ACCESIBLE -->
-                <div style="background-color: #1a202c; color: white; padding: 30px 20px; text-align: center; border-radius: 8px; border: 2px solid var(--primario);">
-                    <span style="font-size: 2.5rem;">📹</span>
-                    <h4 style="margin: 10px 0; color: white; font-size: 1.2rem;">Contenido Audiovisual Integrado</h4>
-                    <p style="font-size: 0.95rem; max-width: 500px; margin: 10px auto; color: #cbd5e0; line-height: 1.4;">
-                        Cuento adaptado: <strong>"NO ES MALO SER DIFERENTE"</strong> (Interpretado en Lengua de Señas Mexicana con Subtítulos avanzados).
-                    </p>
-                    <a href="https://youtube.com" target="_blank" class="btn-acc" style="display: inline-block; background-color: #2f855a; color: white; text-decoration: none; margin-top: 10px; padding: 12px 20px; line-height: 1.2; font-size: 0.95rem;">
-                        🟢 Ver Guía en Lengua de Señas Mexicana (LSM) y Subtítulos
-                    </a>
+                <!-- AVANCE EN SERIE ESTILO TU IMAGEN -->
+                <div style="margin-bottom: 20px;">
+                    <button class="btn-acc" id="boton-avance-serie" onclick="simularAvanceSerie()" style="background-color: #475569; color: white; border: none; font-weight: bold;">
+                        Ir a la Siguiente Obra ➡️
+                    </button>
+                <p style="font-size: 0.9rem; color: #475569; font-weight: bold; margin-bottom: 5px;">👇 LABORATORIO HÁPTICO: Desliza tu dedo o mouse dentro de las zonas para sentir texturas:</p>
+                
+                <div class="lienzo-haptico-laboratorio">
+                    <div class="zona-sensorial-muro" id="haptico-forma" 
+                         onmousemove="ejecutarPulso('lisa')" ontouchmove="ejecutarPulso('lisa')">
+                        CUERPO ESCULTÓRICO<br>(Relieve Sólido Liso)
+                    </div>
+                    <div class="zona-sensorial-muro" id="haptico-deterioro" 
+                         onmousemove="ejecutarPulso('deterioro')" ontouchmove="ejecutarPulso('deterioro')">
+                        CÚPULA SUPERIOR<br>(Textura de Deterioro)
+                    </div>
+                    <div class="zona-sensorial-muro" id="haptico-autodestruccion" 
+                         onmousemove="ejecutarPulso('vacio')" ontouchmove="ejecutarPulso('vacio')">
+                        BASE DAÑADA<br>(Silencio / Autodestrucción)
+                    </div>
                 </div>
-                <p style="font-size: 0.95rem; color: var(--texto); margin-top: 10px; padding-left: 5px;">
-                    <em>(Video interactivo con subtitulado de alto contraste. El reproductor enlaza directamente el audio a auxiliares auditivos vía Bluetooth).</em>
-                </p>
-
-                <p style="margin-top: 20px; font-size: 0.9rem; font-style: italic;">⚠️ Nota del entorno: Sala con luz tenue (50 lux) y ambiente silencioso para cuidar el bienestar emocional.</p>
             </div>
 
-            <h2>⚙️ ¿Qué pasa ante un imprevisto técnico?</h2>
-            <p>El Prototipo VEI está preparado para que la inclusión nunca se apague:</p>
-            <ul>
-                <li>Si el museo no tiene internet o el usuario no tiene datos, instalamos un servidor portátil de bajo costo que transmite el contenido de forma local y sin cables.</li>
-                <li>Si el usuario no lleva celular, el museo le presta una tableta institucional bajo el mismo modelo de recepción.</li>
-                <li>Si hay un apagón tecnológico total, los relieves táctiles físicos de la guía garantizan que la persona siga disfrutando la experiencia de manera autónoma.</li>
-            </ul>
-
-            <hr style="border: 0; border-top: 2px solid var(--primario); margin: 40px 0;">
-
-            <h2>👩‍⚕️ Consultoría y Desarrollo:</h2>
-            <p><strong>Lic. Cinthya Verónica Castillejos Arteaga</strong><br>
-            Especialista en Accesibilidad Sensorial y Neuroergonomía.<br>
-            📬 <strong>Contacto para implementar una Sala Piloto (5 a 10 piezas):</strong> <a href="mailto:verocvca@gmail.com" style="color: var(--primario);">verocvca@gmail.com</a></p>
+            <h2>💼 Catálogo de Servicios y Talleres de Sensibilización</h2>
+            <p>Nuestra consultoría complementa la plataforma tecnológica mediante programas de capacitación humana especializada para el factor humano de las instituciones:</p>
+            
+            <div class="seccion-talleres-bloque">
+                <h4 style="margin-top:0; color: #ff007f; font-size: 1.2rem; font-weight: bold;">👁️ Taller A: "Óptica de los Sentidos: Usabilidad en Baja Visión"</h4>
+                <p style="font-size:1rem; margin-bottom: 0;"><strong>Dirigido a:</strong> Optometristas, Oftalmólogos y Curadores. <br>
+                Dinámica inmersiva utilizando gafas modificadas de simulación clínica para experimentar los retos del glaucoma y la degeneración macular en las salas. Capacitación en audiodescripción estructural.</p>
+                
+                <h4 style="margin-top:20px; color: #ff007f; font-size: 1.2rem; font-weight: bold;">👂 Taller B: "Sintonía Inversa: Los Retos de la Percepción Auditiva"</h4>
+                <p style="font-size:1rem; margin-bottom: 0;"><strong>Dirigido a:</strong> Guías de Museos y Personal de Atención al Público. <br>
+                Aislamiento acústico total y simulación de acúfenos (Tinnitus) con reverberación para comprender de forma empírica la fatiga cognitiva del visitante hipoacúsico en entornos monumentales.</p>
+            </div>
         </main>
     </div>
 
-    <script src="./script.js"></script>
+    <script>
+        let tamanoFuenteRaiz = 16;
+
+        function cambiarContraste() {
+            document.body.classList.toggle('contraste-invertido');
+        }
+
+        function modificarTexto(valor) {
+            tamanoFuenteRaiz += valor;
+            if (tamanoFuenteRaiz < 12) tamanoFuenteRaiz = 12;
+            if (tamanoFuenteRaiz > 26) tamanoFuenteRaiz = 26;
+            document.getElementById("vei-raiz").style.fontSize = tamanoFuenteRaiz + "px";
+        }
+
+        function restablecer() {
+            tamanoFuenteRaiz = 16;
+            document.body.classList.remove('contraste-invertido');
+            document.getElementById("vei-raiz").style.fontSize = "16px";
+        }
+
+        function reproducirAudiodescripcion() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                let textoCedula = document.getElementById("texto-cedula-dinamico").innerText;
+                let lectura = new SpeechSynthesisUtterance(textoCedula);
+                lectura.lang = 'es-MX';
+                window.speechSynthesis.speak(lectura);
+            }
+        }
+
+        function ejecutarPulso(tipoTextura) {
+            if (!navigator.vibrate) return;
+            if (tipoTextura === "lisa") {
+                navigator.vibrate(30);
+            } 
+            else if (tipoTextura === "deterioro") {
+                navigator.vibrate([15, 15]); // Cosquilleo intermitente clínico para el deterioro
+            } 
+            else if (tipoTextura === "vacio") {
+                navigator.vibrate(0);
+            }
+        }
+
+        let numeroObraActual = 1;
+        function simularAvanceSerie() {
+            window.speechSynthesis.cancel();
+            if (navigator.vibrate) {
+                navigator.vibrate(180); // Pulso háptico corto en mano para avisar cambio de obra
+            }
+
+            numeroObraActual++;
+            if (numeroObraActual > 3) { numeroObraActual = 1; }
+
+            if (numeroObraActual === 1) {
+                document.getElementById("titulo-obra-dinamico").innerText = "Obra 1: El Vínculo del Arte Universal";
+                document.getElementById("texto-cedula-dinamico").innerText = "Esta pieza representa la unión de los canales sensoriales mediante relieves geométricos. Explora la textura con tus manos de izquierda a derecha de forma libre.";
+            } else {
+                document.getElementById("titulo-obra-dinamico").innerText = "Obra " + numeroObraActual + ": Escultura en Serie Piloto";
+                document.getElementById("texto-cedula-dinamico").innerText = "Cédula en Lectura Fácil: Esta es la pieza número " + numeroObraActual + " de la Sala 1. El visitante avanza de forma consecutiva por la sala usando este botón en su mano. El recuadro inferior reconfigura al instante el Laboratorio Háptico para simular las zonas sólidas lisas, el deterioro por erosión o los huecos vacíos por autodestrucción de esta nueva pieza.";
+            }
+        }
+    </script>
 </body>
 </html>
