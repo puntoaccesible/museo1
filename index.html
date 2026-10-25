@@ -16,6 +16,10 @@
             line-height: 1.5;
             transition: background-color 0.2s, color 0.2s;
         }
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
 
         /* CLASE PARA INVERTIR A MODO OSCURO / ALTO CONTRASTE AL TOCAR EL BOTÓN */
         /* CLASE PARA INVERTIR A MODO ALTO CONTRASTE: NEGRO CON AMARILLO */
@@ -285,13 +289,13 @@
             tamanoFuenteRaiz += valor;
             if (tamanoFuenteRaiz < 12) tamanoFuenteRaiz = 12;
             if (tamanoFuenteRaiz > 26) tamanoFuenteRaiz = 26;
-            document.getElementById("vei-raiz").style.fontSize = tamanoFuenteRaiz + "px";
+            document.documentElement.style.fontSize = tamanoFuenteRaiz + "px";
         }
 
         function restablecer() {
             tamanoFuenteRaiz = 16;
             document.body.classList.remove('contraste-invertido');
-            document.getElementById("vei-raiz").style.fontSize = "16px";
+            document.documentElement.style.fontSize = "16px";
         }
 
         function reproducirAudiodescripcion() {
